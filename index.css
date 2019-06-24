@@ -9,6 +9,7 @@ html, body {
 }
 
 body {
+	background-image: url('foggy-hand.jpg');
 	background-size: cover;
 	background-position: center;
 	text-align: center;
