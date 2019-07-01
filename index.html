@@ -7,6 +7,8 @@
 	<title>Zombie Apocalypse Quiz App</title>
 	<meta name="description" content="Would you survive the zombie apocalypse? Find out now!">
 	<link href="index.css" rel="stylesheet" type="text/css" />
+	
+	<link href="https://fonts.googleapis.com/css?family=Eater&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -14,11 +16,11 @@
 	<header role="banner">
 		<div>
 			<a href="index.html">
-				<img src="zombie-silhouette.png" alt="zombie icon"/>
+				<img class="logo" src="zombie-silhouette.png" alt="zombie icon"/>
 			</a>
 		</div>
 		<div>
-			<ul>
+			<ul class="horizontal-list">
 				<li>Question: <span class="questionNumber">0</span>/5</li>
 				<li>Score: <span class="score">0</span></li>
 			</ul>
@@ -26,12 +28,6 @@
 	</header>
 	
 	<main role="main">
-	
-	<div class="menuScreen">
-		<h1>Will you survive the zombie apocalypse, or will you become one of them?</h1>
-		<button type="button" class="startButton">Let's find out!</button>
-	</div>
-		
 	</main>
 	
 	<script
@@ -39,6 +35,7 @@
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
 	
+	<script src="constants.js"></script>
 	<script src="index.js"></script>
 </body>
 

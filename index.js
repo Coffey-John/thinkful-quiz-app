@@ -1,62 +1,11 @@
-let curScore = 0;
-let curQuestion = -1;
-
-const questionSet = [
-  { 
-    text: `There is a safe house but you have to cross a long street with hundreds of zombies on it, what's the best course of action?`,
-    ans1: `Try to sneak past the zombies and only kill the ones that see you`,
-    ans2: `Hot wire a car and plow through them to get to the other side`,
-    ans3: `Run straight through them with your weapon and hope you get to the other side in time`,
-    ans4: `Take out the zombies one by one being as stealthy as possible`
-  },
-
-  {
-    text: `What is the safest place to stay during the apocalypse?`,
-    ans1: `In my house. I already have a food stash and weapons to protect myself with`,
-    ans2: `Inside a grocery store or mall, which will have unlimited supplies and weapons to sustain myself`,
-    ans3: `At the police station. More weapons than anywhere else as well as people who know how to fight`,
-    ans4: `A hospital, they might have a cure to the zombie virus`
-  },
-
-  {
-    text: `You are about to escape the zombie infected city by bridge, but the military starts to bomb it to quarantine it, what do you do?`,
-    ans1: `Hunker down and stay in the city to fend for yourself`,
-    ans2: `Try to swim across the 1 mile river to safety`,
-    ans3: `Try to run across the bridge before it's completely destroyed`,
-    ans4: `Send out an SOS flare to try to get them to stop the bombing`
-  }, 
-  {
-    text: `You're being chased by a horde of zombies and you are about to enter the safe room, but realize one of the zombies chasing you is your best friend. What do you do?`,
-    ans1: `Try to take him into the safe room with you while you look for a possible cure`,
-    ans2: `Lock yourself in the safe room, there's no reasoning with him and he might infect you as well`,
-    ans3: `Try to take out the rest of the zombies to save your friend`,
-    ans4: `Hug your friend and try to get him to snap out of it so he can tell the rest of the zombies to leave you alone`
-  }, 
-  {
-    text: `You're on your way to a rescue zone but your car runs out of gas. The next gas station is 7 miles and the rescue zone is 50 miles away. What do you do?`,
-    ans1: `Walk 7 miles to the gas station on foot to get gas and then go back to fill your car`,
-    ans2: `Resolve to run the remaining 50 miles (2 marathons) and not stop until you make it to the rescue zone`,
-    ans3: `Try to hot wire another car without setting off its alarm`,
-    ans4: `Head back to the closest city and come up with another plan`
-  }
-];
-
-const ANSWERS = [ 
-  `Try to sneak past the zombies and only kill the ones that see you.<br>Attracting attention to yourself is never a good idea during a zombie outbreak.`, 
-  `Inside a grocery store or mall, which will have unlimited supplies and weapons to sustain myself.<br>For long term survival, food and barricading supplies are a necessity.`, 
-  `Try to swim across the 1 mile river to safety.<br>Even though it might be difficult, securing your own survival and not counting on anyone else is the best option.`, 
-  `Lock yourself in the safe room, there's no reasoning with him and he might infect you as well.<br>Until a cure is discovered and you are safe, you have to make sure you survive.`, 
-  `Try to hot wire another car without setting off its alarm.<br>Unless you are with other survivors who have a car, it's important to get to the rescue zone ASAP.`,
-];
-
 // rendering functions that update the HTML according to the state stored in javascript
 
 function renderStartScreen() {
 	$("main").html(`
-	<div class="menuScreen">
+	<section class="menuScreen padding-top-medium">
 		<h1>Will you survive the zombie apocalypse, or will you become one of them?</h1>
 		<button type="button" class="startButton">Let's find out!</button>
-	</div>
+	</section>
 	`)
 }
 
@@ -64,10 +13,10 @@ function renderQuestion() {
 	let question = getCurQuestion();
 	
 	$("main").html(`
-	<div class="questionScreen">
+	<section class="questionScreen">
 		<h1>${question.text}</h1>
 		<form class="questionForm">
-			<fieldset>
+			<fieldset class="radio">
 				<label>
 					<input type="radio" value="${question.ans1}" name="answer" required>
 					${question.ans1}
@@ -86,36 +35,63 @@ function renderQuestion() {
 				</label>
 			</fieldset>
 			
-			<button type="submit">SUBMIT</button>
+			<button type="submit">Submit</button>
 		</form>
-	</div>
+	</section>
 	`)
 }
 
-function renderAnswer(answer, isCorrect) {
-	$("main").html(`
-	<div class="answerRightScreen">
-		<h1>${isCorrect? "Correct!" : "Wrong answer! "}</h1>
-		<div>The answer is:</div>
-		<div>${answer}</div>
-		<button type="button" class="nextQuestion">Next Question</button>
-	</div>
-	`)
+function renderAnswer(answer, correctAnswer, explanation) {
+	
+	// CORRECT ANSWER!
+	if(answer == correctAnswer) {
+		$("main").html(`
+		<section class="answerRightScreen">
+			<h1 class="padding-bottom-small">Correct!</h1>
+			<div class="bold underline">The answer is:</div>
+			<div>${correctAnswer}</div>
+			<div>${explanation}</div>
+			<br>
+			<button type="button" class="nextQuestion">Next</button>
+		</section>
+		`)
+	}
+	// WRONG ANSWER!
+	else {
+		$("main").html(`
+		<section class="answerRightScreen">
+			<h1 class="padding-bottom-small">Wrong answer!</h1>
+			<div class="bold underline">Your answer was:</div>
+			<div>${answer}</div>
+			<br>
+			<div class="bold underline">The correct answer is:</div>
+			<div>${correctAnswer}</div>
+			<div>${explanation}</div>
+			<br>
+			<button type="button" class="nextQuestion">Next</button>
+		</section>
+		`)
+	}
 }
 
 function renderFeedback() {
+	let won = getScore() == getTotalNumQuestions();
 	$("main").html(`
-	<div class="feedbackScreen">
-		<h1>${getScore() == getTotalNumQuestions() ? "You passed the zombie survival quiz!" : "You failed the zombie survival quiz."}</h1>
-		<div>Score: <span class="score">${getScore()}</span>/${getTotalNumQuestions()}</div>
+	<section class="feedbackScreen">
+		<h1 class="padding-bottom-small">${won ? "You passed the zombie survival quiz!" : "You failed the zombie survival quiz."}</h1>
+		<img src=${won? "\"win.gif\"":"\"lose.gif\""}>
+		<br><br>
+		<div><span class="bold underline">Final Score</span>: <span class="score">${getScore()}</span>/${getTotalNumQuestions()}</div>
+		<br>
 		<div>
 			${getScore() == getTotalNumQuestions() ?
 				"Sleep soundly tonight, knowing that if your town gets infected with a zombie virus, you’ll come out alive!"
 				:"Don't give up, there's still hope! Brush up on your zombie knowledge and try again before the apocalypse starts!"
 			}
 		</div>
+		<br>
 		<button type="button" class="startButton">Play Again</button>
-	</div>
+	</section>
 	`)
 }
 
@@ -147,10 +123,10 @@ function handleAnswerSubmit() {
 		if(isCorrect) {
 			curScore++;
 			updateScore();
-			renderAnswer(getCorrectAnswer(curQuestion), true);
+			renderAnswer(answer, getCorrectAnswer(curQuestion), getExplanation(curQuestion));
 		}
 		else {
-			renderAnswer(getCorrectAnswer(curQuestion), false);
+			renderAnswer(answer, getCorrectAnswer(curQuestion), getExplanation(curQuestion));
 		}
 	});
 }
@@ -189,11 +165,15 @@ function checkAnswer(answer, questionNumber) {
 	let question = questionSet[questionNumber];
 	let correctAnswer = getCorrectAnswer(questionNumber);
 	console.log("correct answer: "+correctAnswer);
-	return correctAnswer.startsWith(answer);
+	return correctAnswer == answer;
 }
 
 function getCorrectAnswer(questionNumber) {
 	return ANSWERS[questionNumber];
+}
+
+function getExplanation(questionNumber) {
+	return EXPLANATIONS[questionNumber];
 }
 
 function getCurQuestion() {

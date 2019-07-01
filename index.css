@@ -1,21 +1,169 @@
+/* generic/page setup */
+
 * {
 	box-sizing: border-box;
 }
 
 html, body {
+	padding: 0;
 	margin: 0;
-	width: 100%;
-	height: 100%;
 }
 
 body {
-	background-image: url('foggy-hand.jpg');
+	background: url('foggy-hand.jpg') fixed;
 	background-size: cover;
 	background-position: center;
 	text-align: center;
 	padding: 20px;
+	
+	font-family: 'Eater', cursive;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	width: 100%;
+	background-color: #a81e1e;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	outline: none;
+}
+
+button:hover, button:focus {
+	background-color: #911a1a;
+	cursor: pointer;
+}
+
+.bold {
+	font-weight: bold;
+}
+.underline {
+	text-decoration: underline;
+}
+
+.padding-bottom-small {
+	padding-bottom: 30px;
+}
+.padding-top-small {
+	padding-top: 30px;
+}
+
+.padding-bottom-medium {
+	padding-bottom: 80px;
+}
+.padding-top-medium {
+	padding-top: 80px;
+}
+
+@media screen and (max-width: 768px) {
+	.padding-bottom-small {
+		padding-bottom: 10px;
+	}
+	.padding-top-small {
+		padding-top: 10px;
+	}
+
+	.padding-bottom-medium {
+		padding-bottom: 10px;
+	}
+	.padding-top-medium {
+		padding-top: 10px;
+	}
+}
+
+/* header */
+
+header {
+}
+
+ul.horizontal-list {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+}
+ul.horizontal-list li {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+/* main */
+
+main {
+	max-width: 960px;
+	margin: auto;
+}
+
+/* menuScreen */
+
+/* questionScreen w/ radio buttons */
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #eee;
+    outline: none;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+    transition: all 0.3s ease;
+}
+input:hover {
+	border: 2px solid #fff;
+}
+input:checked {
+    border: 8px solid #ffffff;
+}
+input[type=radio] {
+    flex: 0 0 auto;
+    margin-right: 10px;
 }
 
 .questionScreen label {
 	display: block;
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+.questionScreen label:nth-child(1) {
+	background-color: #B0B198;
+}
+.questionScreen label:nth-child(2) {
+	background-color: #7A7B70;
+}
+.questionScreen label:nth-child(3) {
+	background-color: #836666;
+}
+.questionScreen label:nth-child(4) {
+	background-color: #8a5e5e;
+}
+
+.questionScreen label:hover {
+	cursor: pointer;
+}
+
+/* -------- adjust font & margin/padding sizes on small screens --------- */
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 18px;
+    }
+    label {
+        font-size: 12px;
+        padding: 5px;
+    }
 }
