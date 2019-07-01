@@ -102,9 +102,6 @@ main {
 	max-width: 960px;
 	margin: auto;
 }
-
-/* menuScreen */
-
 /* questionScreen w/ radio buttons */
 
 input {
@@ -156,7 +153,7 @@ input[type=radio] {
 	cursor: pointer;
 }
 
-/* -------- adjust font & margin/padding sizes on small screens --------- */
+/* ------ adjust font & margin/padding sizes on small screens ------ */
 
 @media screen and (max-width: 768px) {
     h1 {
