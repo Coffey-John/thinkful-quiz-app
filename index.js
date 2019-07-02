@@ -25,9 +25,10 @@ function renderQuestion() {
 	
 	$("main").html(`
 	<section class="questionScreen">
-		<h1>${question.text}</h1>
 		<form class="questionForm">
 			<fieldset class="radio">
+				<legend>${question.text}</legend>
+				
 				<label>
 					<input type="radio" value="${question.ans1}" name="answer" required>
 					${question.ans1}

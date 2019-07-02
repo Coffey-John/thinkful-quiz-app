@@ -129,6 +129,11 @@ input[type=radio] {
     margin-right: 10px;
 }
 
+.questionScreen legend {
+	font-weight: 700;
+	font-size: 24px;
+}
+
 .questionScreen label {
 	display: block;
 	margin: 0;
@@ -136,16 +141,16 @@ input[type=radio] {
 	padding: 10px;
 }
 
-.questionScreen label:nth-child(1) {
+.questionScreen label:nth-child(2) {
 	background-color: #B0B198;
 }
-.questionScreen label:nth-child(2) {
+.questionScreen label:nth-child(3) {
 	background-color: #7A7B70;
 }
-.questionScreen label:nth-child(3) {
+.questionScreen label:nth-child(4) {
 	background-color: #836666;
 }
-.questionScreen label:nth-child(4) {
+.questionScreen label:nth-child(5) {
 	background-color: #8a5e5e;
 }
 
